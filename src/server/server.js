@@ -100,34 +100,46 @@ app.post('/image', async (req, res) => {
 
 
 // post trip route
-app.post ('/trip', async (req, res) => {
-    try {
-        console.log(req.body);
-        tripInfo.city = req.body.city;
-        tripInfo.state = req.body.state;
-        tripInfo.date = req.body.date;
+app.post('/trip', async (req, res) => {
+    
+    
+    console.log("Request Body:::", req.body);
+    tripInfo.city = req.body.city;
+    tripInfo.state = req.body.state;
+    tripInfo.date = req.body.date;
+    console.log("city:::", tripInfo.city)
+    console.log("state:::", tripInfo.state)
+    console.log("date:::", tripInfo.date)
 
-        tripInfo.countdown = getDaysTillTrip(tripInfo.date); //possibly need to add .toString()
+    tripInfo.countdown = getDaysTillTrip(tripInfo.date); //possibly need to add .toString()
+    console.log("countdown:::", tripInfo.countdown)
 
-        // fetch image url from pixabay api
-        tripInfo.image = await getImageUrl(tripInfo.city, tripInfo.state);
+    // fetch image url from pixabay api
+    tripInfo.image = await getImageUrl(tripInfo.city, tripInfo.state);
+    
 
-        // fetch latitude and longitude from geonames api
-        let geoData = await getLatLong(tripInfo.city, tripInfo.state);
-        tripInfo.latitude = geoData.latitude;
-        tripInfo.longitude = geoData.longitude;
+    // fetch latitude and longitude from geonames api
+    let geoData = await getLatLong(tripInfo.city, tripInfo.state);
+    tripInfo.latitude = geoData['latitude'];
+    tripInfo.longitude = geoData['longitude'];
+    // .then(function (response) {
+    //     console.log("GEO RESPONSE::", response)
+        
+    //     console.log("TRIPINFO:::", tripInfo);
+    // })
+    let weatherData = await getWeather(tripInfo.latitude, tripInfo.longitude, tripInfo.countdown, tripInfo.date)
+    .then(function (response) {
+        tripInfo.tempHigh = response.max_temp;
+        tripInfo.tempLow = response.min_temp;
+        tripInfo.weatherDescription = response.weather_description;
+        tripInfo.weatherInfo = response.flag;
+    });
+    console.log('TRIPINFO:::', tripInfo)
 
-        // fetch weather data from weatherbit api
-        let weatherData = await getWeather(tripInfo.latitude, tripInfo.longitude, tripInfo.countdown, tripInfo.date);
-        tripInfo.tempHigh = weatherData.max_temp;
-        tripInfo.tempLow = weatherData.min_temp;
-        tripInfo.weatherDescription = weatherData.weather_description;
-        tripInfo.weatherInfo = weatherData.flag;
+    // fetch weather data from weatherbit api
+    
+    res.send(tripInfo);
 
-        res.send(tripInfo);
-
-    } catch (error) {
-        console.log(`Error = ${error}`);
-    }
+    
 });
 }

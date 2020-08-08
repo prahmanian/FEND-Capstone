@@ -1,38 +1,54 @@
 // This function calls the Pixabay API to return a image URL based on destination
 const dotenv = require('dotenv');
 dotenv.config();
+const axios = require('axios');
 
 const getLatLong = async (city='', state='') => {
     const baseUrl = `http://api.geonames.org/searchJSON?username=${process.env.GEONAMES_API_USERNAME}&maxRows=1&q=`
     const searchTerm = encodeURIComponent(`${city} ${state}`)
     
-    
-    try {
-        const result = await axios.get(baseUrl+searchTerm);
-        console.log('Geonames API: ', result, result.status, result.statusText, result.ok);
-        
-        if (result.ok) {
-            const data = await result.json()
-            if (data.geonames.length > 0) {
-                return {
-                    latitude: data.geonames[0].lat,
-                    longitude: data.geonames[0].lng
-                }
-            } else {
-                console.log(`ERROR: code ${response.status} ${response.statusText}.`)
-            }
+    const result = await axios.get(baseUrl+searchTerm)
+    if (result.data.geonames.length > 0) {
+        const lat = result.data.geonames[0].lat;
+        const long = result.data.geonames[0].lng;
+        console.log(":::LATITUDE::: ", lat)
+        console.log(":::LONGITUDE::: ", long)
+        const latLongObj = {
+            latitude: lat,
+            longitude: long
         }
-        
 
-    } catch (error) {
-        console.log(`Error = ${error}`);
-    }
+        return latLongObj
+    } else {
+        console.log(`ERROR: code ${result.status} ${result.statusText}.`);
+        return {
+            latitude: 'No Lat',
+            longitude: 'No Long'
+        };
+}
+}
 
-};
 
-// example result from api call using 'Austin Texas'
-// getLatLong("Austin", "Texas");
-// {"totalResultsCount":986,"geonames":[{"adminCode1":"TX","lng":"-97.74306","geonameId":4671654,"toponymName":"Austin","countryId":"6252001","fcl":"P","population":931830,"countryCode":"US","name":"Austin","fclName":"city, village,...","adminCodes1":{"ISO3166_2":"TX"},"countryName":"United States","fcodeName":"seat of a first-order administrative division","adminName1":"Texas","lat":"30.26715","fcode":"PPLA"}]}
 
-export { getLatLong }
+    // .then(function (response) {
+    //     // console.log('Geonames API: ', result, result.status, result.statusText, result.ok);
+
+    //     if (response.data.geonames.length > 0) {
+    //         const lat = response.data.geonames[0].lat;
+    //         const long = response.data.geonames[0].lng;
+    //         console.log(":::LATITUDE::: ", lat)
+    //         console.log(":::LONGITUDE::: ", long)
+    //         const latLongObj = {
+    //             latitude: lat,
+    //             longitude: long
+    //         }
+
+    //         return latLongObj
+    //     }
+    // })
+//     .catch(function (error) {
+//         console.log(error)
+//     });
+// }
+
 module.exports = getLatLong;

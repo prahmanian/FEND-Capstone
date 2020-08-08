@@ -1,4 +1,4 @@
-
+// calculates the number of days from the current date until the departure date
 const getDaysTillTrip = (date='') => {
     let currentDate = new Date();
         travelDate = new Date(date);
@@ -8,5 +8,4 @@ const getDaysTillTrip = (date='') => {
         return daysTillTrip
     }
 
-export { getDaysTillTrip }
 module.exports = getDaysTillTrip

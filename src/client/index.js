@@ -1,5 +1,5 @@
 import { handleSubmit } from './js/formHandler'
-import { validateUrl } from './js/validateUrl'
+import { validateInput } from './js/validateInput'
 import { displayError } from './js/displayError'
 import { updateView } from './js/updateView'
 
@@ -16,7 +16,8 @@ import './styles/header.scss'
 
 export {
     handleSubmit,
-    validateUrl,
+    validateInput,
     displayError,
     updateView
 }
+
