@@ -11,8 +11,8 @@ const getLatLong = async (city='', state='') => {
     if (result.data.geonames.length > 0) {
         const lat = result.data.geonames[0].lat;
         const long = result.data.geonames[0].lng;
-        console.log(":::LATITUDE::: ", lat)
-        console.log(":::LONGITUDE::: ", long)
+        // console.log(":::LATITUDE::: ", lat)
+        // console.log(":::LONGITUDE::: ", long)
         const latLongObj = {
             latitude: lat,
             longitude: long
@@ -29,26 +29,5 @@ const getLatLong = async (city='', state='') => {
 }
 
 
-
-    // .then(function (response) {
-    //     // console.log('Geonames API: ', result, result.status, result.statusText, result.ok);
-
-    //     if (response.data.geonames.length > 0) {
-    //         const lat = response.data.geonames[0].lat;
-    //         const long = response.data.geonames[0].lng;
-    //         console.log(":::LATITUDE::: ", lat)
-    //         console.log(":::LONGITUDE::: ", long)
-    //         const latLongObj = {
-    //             latitude: lat,
-    //             longitude: long
-    //         }
-
-    //         return latLongObj
-    //     }
-    // })
-//     .catch(function (error) {
-//         console.log(error)
-//     });
-// }
 
 module.exports = getLatLong;

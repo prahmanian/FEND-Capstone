@@ -1,6 +1,6 @@
 function updateView(tripInfo) {
     // get dom container
-    const resultDiv = document.getElementById('results');
+    const newTrip = document.getElementById('newTrip');
 
     if (tripInfo) {
 
@@ -17,17 +17,31 @@ function updateView(tripInfo) {
 //     tempHigh: '',
 //     weatherDescription: ''
 // }
-        resultDiv.innerHTML = `
-        <div class="container">
-            <div class="sentiment_value"><h3>City</h3>: ${tripInfo.city}</div>
-            <div class="sentiment_value"><h3>State</h3>: ${tripInfo.state}</div>
-            <div class="sentiment_value"><h3>Departure Date</h3>: ${tripInfo.date}</div>
-            <div class="sentiment_value"><h3>Days Till Trip</h3>: ${tripInfo.countdown}</div>
-            <div class="sentiment_value"><h3>Weather</h3> <h4>High Temp</h4>${tripInfo.tempHigh} &deg;F <h4>Low Temp</h4>${tripInfo.tempLow} &deg;F <p>${tripInfo.weatherDescription}</p></div>
+        newTrip.innerHTML = `
+        <h2>Your Newest Trip</h2>
+        <div class="card ">
+            <figure class="details image">
+                <img class="trip_image image" src="${tripInfo.image}" alt="destination image">
+            </figure>
+            <div class="details destination">
+                <h3><span>Upcoming Trip to</span>: ${tripInfo.city}, ${tripInfo.state}</h3>
+            </div>
+            <div class="details info">
+                <span>Departing on</span>: ${tripInfo.date}<br>
+                <span>You are staying for</span>: ${tripInfo.duration} days.<br>
+                <span>Only ${tripInfo.countdown} Days Till Your Trip!</span>
+            </div>
+            <div class="details weather">
+                <h3>Weather Outlook</h3>
+                <span>Source: </span> ${tripInfo.weatherInfo}<br>
+                <span>High Temp</span> ${tripInfo.tempHigh} &deg;F <br>
+                <span>Low Temp</span> ${tripInfo.tempLow} &deg;F <br>
+                <p><em>${tripInfo.weatherDescription}</em></p>
+            </div>
         </div>`;
     } else {
         // Client.displayError();
-        alert('failed to update view');
+        alert('failed to update view')
     }
 };
 

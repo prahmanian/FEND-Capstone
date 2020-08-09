@@ -5,6 +5,7 @@ async function handleSubmit(event) {
     let inputCity = document.getElementById('city').value
     let inputState = document.getElementById('state').value
     let inputDate = document.getElementById('date').value
+    let returnDate = document.getElementById('returnDate').value
     // console.log("url stringified::::", JSON.stringify(url));
     let validation = Client.validateInput(inputCity, inputState, inputDate);
 
@@ -16,6 +17,7 @@ async function handleSubmit(event) {
             city: inputCity,
             state: inputState,
             date: inputDate,
+            returnDate: returnDate,
         };
 
         console.log(tripObj);
@@ -30,7 +32,7 @@ async function handleSubmit(event) {
             // body: tripObj,
         });
         const tripData = await apiCall.json();
-        console.log(tripData);
+        console.log("TRIPDATA:::", tripData);
         // fetch sentiment
         // const sentiment = await fetch('/trip');
         // const sentimentJsonified = await sentiment.json();

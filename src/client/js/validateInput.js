@@ -18,7 +18,7 @@ function validateInput(city, state, date) {
         return true;
     } else {
         console.log(">>> Inputs invalid <<<");
-        alert('Please provide valid data! Ensure your destination is non-numerical and your departure date is in the future.');
+        // alert('Please provide valid data! Ensure your destination is non-numerical and your departure date is in the future.');
         return false;
     }
     

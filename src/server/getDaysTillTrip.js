@@ -4,7 +4,7 @@ const getDaysTillTrip = (date='') => {
         travelDate = new Date(date);
         let deltaMilliseconds = travelDate - currentDate;
         let daysTillTrip = Math.round(deltaMilliseconds / 1000 / 60 / 60 / 24);
-        console.log("daysTillTrip", daysTillTrip)
+        // console.log("daysTillTrip", daysTillTrip)
         return daysTillTrip
     }
 

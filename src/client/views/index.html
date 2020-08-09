@@ -9,9 +9,9 @@
 
     <body>
 
-        <header>
+        <header id="header">
             <h1>Wanderlust Travel</h1>
-            <p>Not all who wander are lost...</p>
+            <p id="tagline">Not all who wander are lost...</p>
         </header>
 
         <main>
@@ -29,25 +29,16 @@
                     <div class ="holder date">
                         <label for="date">When are you leaving for your trip?</label><br>
                         <input type="date" name="date" value="2020-10-10" id="date">
+                        <label for="returnDate">When are you coming backp?</label><br>
+                        <input type="date" name="returnDate" value="2020-10-12" id="returnDate">
                     </div>
 
-                    <input type="submit" name="" value="Add Trip" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+                    <input class=" submitBtn" type="submit" name="" value="Add Trip" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 </form>
             <section>
 
             <section id="newTrip">
-                <div class="card">
-                    <figure class="details">
-                        <!-- <img class="trip_image" src="./media/pedram.png" alt="destination image"> -->
-                    </figure>
-                    
-                    <div class="card_details">
-                        <div class="details destination"></div>
-                        <div class="title">Therapeutic Hypothermia: A New Potential for Post-Cardiac Arrest Care</div>
-                        <div class="pubDate">11/28/2010</div>
-                        <a href="./posts/post_1.html"><button>Read Post</button></a>
-                    </div>
-                </div>
+                
 
             </section>
 
@@ -65,7 +56,7 @@
             &copy; Copyright 2020: Pedram Rahmanian
         </footer>
 
-        <!-- <script>
+        <script>
             // Check that service workers are supported
             if ('serviceWorker' in navigator) {
                 // Use the window load event to keep the page load performant
@@ -73,6 +64,6 @@
                     navigator.serviceWorker.register('/service-worker.js');
                 });
             }
-        </script> -->
+        </script>
     </body>
 </html>

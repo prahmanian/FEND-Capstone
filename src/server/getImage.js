@@ -14,7 +14,7 @@ const getImageUrl = async (city='', state='') => {
         // console.log('Pixabay API: ', result, result.status, result.statusText, result.ok);
         // console.log(response)
         if (response.data.hits.length > 0) {
-            console.log("imageURL", response.data.hits[0].webformatURL)
+            // console.log("imageURL", response.data.hits[0].webformatURL)
             return response.data.hits[0].webformatURL
         }
     }

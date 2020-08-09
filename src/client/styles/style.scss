@@ -1,0 +1,147 @@
+.card {
+    min-width: 200px;
+    max-width: 800px;
+    /* padding: 10px; */
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    display: inline-flex;
+    margin: 15px;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas:
+    "img dest"
+    "img info"
+    "img weather"
+
+}
+
+.image {
+    grid-area: img;
+    max-width: 400px;
+    display: block;
+}
+
+.destination {
+    grid-area: dest;
+}
+
+.info {
+    grid-area: info;
+}
+
+.weather {
+    grid-area: weather;
+}
+
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+.card_image {
+    width: 100%;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.card_details {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.card button {
+    width: 100%;
+    height: 25px;
+    color: #1D201F;
+    border: 2px solid #a9fdac;
+    border-radius: 15px;
+    background-color: #fffff8;
+    padding: auto 5px;
+    align-items: center;
+    
+}
+
+.card a {
+    margin: auto;
+}
+
+.card button:hover {
+    color: #1d201f;
+    border: 2px solid #a9fdac;
+    background-color: #a9fdac;
+    font-weight: bolder;
+}
+
+.category {
+    color:#42BFDD;
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+.pubDate {
+    color: #FFCAB1;
+    margin-bottom: 10px;
+}
+
+.title {
+    padding: 10px 0px;
+    font-weight: 500;
+}
+
+h1 {
+    color: #a9fdac;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2.7em;
+}
+
+h2 {
+    color: rgb(242, 252, 255);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2em;
+}
+
+h3 {
+    color: #1d201f;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.25em;
+    text-decoration: underline;
+}
+
+
+p {
+    color: #1d201f;
+
+}
+
+body {
+    background: rgb(136, 203, 171);
+    background: linear-gradient(
+      0deg,
+      rgba(136, 203, 171, 1) 0%,
+      rgba(0, 13, 60, 1) 100%
+    );
+    margin: 0;
+    font-family: "Merriweather", serif;
+    color: #fff;
+  }
+
+  @media(max-width:576px) {
+    .card {
+        width: 95%;
+        display: grid;
+        justify-content: center;
+        padding: 0 auto;
+        grid-template-columns: 1fr;
+        grid-template-rows: 150px auto auto minmax(150px, 250px);
+        grid-template-areas:
+        "dest"
+        "img"
+        "info"
+        "weather";
+      
+    }
+
+
+}

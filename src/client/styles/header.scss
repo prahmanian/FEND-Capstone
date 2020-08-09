@@ -1,5 +1,31 @@
-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 40px;
+#header {
+    display: block;
+    // grid-area: hd;
+    background-color: #1d201f;
+    padding: auto auto;
+    place-items: center;
+    color: #fffff8;
+    text-align: center;
+    padding: 25px;
+}
+
+#tagline {
+    color: #fffff8;
+}
+
+@media(max-width:576px) {
+    #header {
+        grid-template-columns: 1fr;
+        grid-template-rows: 50px 50px 50px;
+        grid-column-gap: 0;
+        background-color: #1d201f;
+        /* padding: 10px; */
+        place-items: center;
+        padding: 0;
+        color: #fffff8;
+
+    }
+
+
+
 }

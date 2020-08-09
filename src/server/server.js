@@ -20,6 +20,8 @@ let tripInfo = {
     latitude: '',
     longitude: '',
     date: '',
+    returnDate: '',
+    duration: '',
     image: '',
     countdown: '',
     weatherInfo: '',
@@ -103,16 +105,22 @@ app.post('/image', async (req, res) => {
 app.post('/trip', async (req, res) => {
     
     
-    console.log("Request Body:::", req.body);
+    // console.log("Request Body:::", req.body);
     tripInfo.city = req.body.city;
     tripInfo.state = req.body.state;
     tripInfo.date = req.body.date;
-    console.log("city:::", tripInfo.city)
-    console.log("state:::", tripInfo.state)
-    console.log("date:::", tripInfo.date)
+    tripInfo.returnDate = req.body.returnDate;
+
+    start = new Date(tripInfo.date);
+    end = new Date(tripInfo.returnDate);
+    tripInfo.duration = Math.round((end - start) / 1000 / 60 / 60 / 24);
+
+    // console.log("city:::", tripInfo.city)
+    // console.log("state:::", tripInfo.state)
+    // console.log("date:::", tripInfo.date)
 
     tripInfo.countdown = getDaysTillTrip(tripInfo.date); //possibly need to add .toString()
-    console.log("countdown:::", tripInfo.countdown)
+    // console.log("countdown:::", tripInfo.countdown)
 
     // fetch image url from pixabay api
     tripInfo.image = await getImageUrl(tripInfo.city, tripInfo.state);
